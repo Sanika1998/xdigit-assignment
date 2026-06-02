@@ -7,10 +7,28 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import TextField from '@mui/material/TextField'
+import type { SxProps, Theme } from '@mui/material/styles'
 import { useEffect, useState } from 'react'
 import { useLocale } from '../context/LocaleContext'
 
 export type HelpMeWritePhase = 'prompt' | 'result'
+
+const alertSx: SxProps<Theme> = { mb: 2 }
+
+const promptBoxSx: SxProps<Theme> = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 1.5,
+  mt: 1,
+}
+
+const resetButtonSx: SxProps<Theme> = { alignSelf: 'flex-start' }
+
+const loadingSpinnerSx: SxProps<Theme> = { display: 'block', mx: 'auto', my: 4 }
+
+const suggestionFieldSx: SxProps<Theme> = { mt: 1 }
+
+const dialogActionsSx: SxProps<Theme> = { px: 3, pb: 2, flexWrap: 'wrap', gap: 1 }
 
 type Props = {
   open: boolean
@@ -69,13 +87,13 @@ export function HelpMeWriteDialog({
       <DialogTitle id="help-me-write-title">{title}</DialogTitle>
       <DialogContent>
         {error && (
-          <Alert severity="error" sx={{ mb: 2 }} role="alert">
+          <Alert severity="error" sx={alertSx} role="alert">
             {error}
           </Alert>
         )}
 
         {phase === 'prompt' ? (
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mt: 1 }}>
+          <Box sx={promptBoxSx}>
             <TextField
               value={userPrompt}
               onChange={(e) => onUserPromptChange(e.target.value)}
@@ -93,13 +111,13 @@ export function HelpMeWriteDialog({
               variant="text"
               onClick={onResetPrompt}
               disabled={loading}
-              sx={{ alignSelf: 'flex-start' }}
+              sx={resetButtonSx}
             >
               {t('helpMeWrite.resetPrompt')}
             </Button>
           </Box>
         ) : loading ? (
-          <CircularProgress size={32} sx={{ display: 'block', mx: 'auto', my: 4 }} />
+          <CircularProgress size={32} sx={loadingSpinnerSx} />
         ) : (
           <TextField
             value={draft}
@@ -109,11 +127,11 @@ export function HelpMeWriteDialog({
             fullWidth
             label={t('helpMeWrite.suggestionLabel')}
             placeholder={t('helpMeWrite.suggestionPlaceholder')}
-            sx={{ mt: 1 }}
+            sx={suggestionFieldSx}
           />
         )}
       </DialogContent>
-      <DialogActions sx={{ px: 3, pb: 2, flexWrap: 'wrap', gap: 1 }}>
+      <DialogActions sx={dialogActionsSx}>
         <Button onClick={onClose} disabled={loading}>
           {t('helpMeWrite.discard')}
         </Button>

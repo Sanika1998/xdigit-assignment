@@ -1,9 +1,16 @@
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
+import type { SxProps, Theme } from '@mui/material/styles'
 import { useNavigate, useSearchParams } from 'react-router'
 import { useLocale } from '../context/LocaleContext'
 import { startNewApplication } from '../utils/startNewApplication'
+
+const cardSx: SxProps<Theme> = { p: { xs: 3, md: 4 }, textAlign: 'center' }
+
+const messageSx: SxProps<Theme> = { mb: 1 }
+
+const startNewButtonSx: SxProps<Theme> = { mt: 3 }
 
 export function ApplicationSuccess() {
   const { t } = useLocale()
@@ -21,12 +28,12 @@ export function ApplicationSuccess() {
       className="form-card"
       role="status"
       aria-live="polite"
-      sx={{ p: { xs: 3, md: 4 }, textAlign: 'center' }}
+      sx={cardSx}
     >
       <Typography variant="h5" component="h1" gutterBottom>
         {t('success.title')}
       </Typography>
-      <Typography color="text.secondary" sx={{ mb: 1 }}>
+      <Typography color="text.secondary" sx={messageSx}>
         {t('success.message')}
       </Typography>
       {referenceId && (
@@ -34,7 +41,7 @@ export function ApplicationSuccess() {
           {t('success.reference', { id: referenceId })}
         </Typography>
       )}
-      <Button sx={{ mt: 3 }} variant="outlined" onClick={handleStartNew}>
+      <Button sx={startNewButtonSx} variant="outlined" onClick={handleStartNew}>
         {t('actions.startNew')}
       </Button>
     </Paper>

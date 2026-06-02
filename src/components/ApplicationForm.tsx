@@ -74,6 +74,10 @@ const secondaryActionsSx: SxProps<Theme> = {
   width: { xs: '100%', sm: 'auto' },
 }
 
+const formCardSx: SxProps<Theme> = { position: 'relative' }
+
+const submitErrorSx: SxProps<Theme> = { mb: 2 }
+
 export const ApplicationForm = () => {
   const { t } = useLocale()
   const theme = useTheme()
@@ -111,7 +115,7 @@ export const ApplicationForm = () => {
         id="application-form"
         elevation={0}
         className="form-card"
-        sx={{ position: 'relative' }}
+        sx={formCardSx}
       >
         <Typography id="form-title" component="h1" className="form-page-title">
           {t('appTitle')}
@@ -155,7 +159,7 @@ export const ApplicationForm = () => {
           </Box>
 
           {submitError && (
-            <Box sx={{ mb: 2 }} aria-live="polite">
+            <Box sx={submitErrorSx} aria-live="polite">
               <Alert severity="error" role="alert">
                 {submitError}
               </Alert>

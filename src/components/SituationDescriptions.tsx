@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import Grid from '@mui/material/Grid'
+import type { SxProps, Theme } from '@mui/material/styles'
 import { Suspense, lazy, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { OpenAIRequestError, buildPrompt, generateWritingSuggestion } from '../api/openai'
@@ -41,6 +42,8 @@ const PLACEHOLDER_KEYS: Record<SituationField, string> = {
   employmentCircumstances: 'placeholders.employmentCircumstances',
   reasonForApplying: 'placeholders.reasonForApplying',
 }
+
+const helpButtonRowSx: SxProps<Theme> = { display: 'flex', justifyContent: 'flex-end', mb: 1 }
 
 export const SituationDescriptions = () => {
   const { t, locale } = useLocale()
@@ -125,7 +128,7 @@ export const SituationDescriptions = () => {
 
   const renderField = (field: SituationField) => (
     <Grid size={12} key={field}>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
+      <Box sx={helpButtonRowSx}>
         <Button
           type="button"
           size="small"

@@ -62,8 +62,8 @@ html[data-theme='dark'] .landing__header {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: var(--landing-teal);
-  color: #fff;
+  background: color-mix(in srgb, var(--landing-primary) 14%, transparent);
+  color: var(--landing-primary);
   font-size: 1rem;
   line-height: 1;
 }

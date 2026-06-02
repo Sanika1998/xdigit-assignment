@@ -1,4 +1,6 @@
 import { Link } from 'react-router'
+import { Tooltip } from '@mui/material'
+import { HandHeart, Moon, Sun } from 'lucide-react'
 import { LanguageSwitcher } from '../LanguageSwitcher'
 import { useSiteTheme } from '../../hooks/useSiteTheme'
 import { useLocale } from '../../context/LocaleContext'
@@ -12,7 +14,7 @@ export function Header() {
     <header className="landing__header">
       <Link to="/" className="landing__brand">
         <span className="landing__logo" aria-hidden="true">
-          ✦
+          <HandHeart size={18} />
         </span>
         <span className="landing__brand-text">{t('landing.brand')}</span>
       </Link>
@@ -21,14 +23,16 @@ export function Header() {
         <div className="landing__nav-lang">
           <LanguageSwitcher variant="header" />
         </div>
-        <button
-          type="button"
-          className="landing__icon-btn"
-          onClick={toggleTheme}
-          aria-label={dark ? t('landing.themeLight') : t('landing.themeDark')}
-        >
-          {dark ? '☀️' : '🌙'}
-        </button>
+        <Tooltip title={dark ? t('landing.themeLight') : t('landing.themeDark')}>
+          <button
+            type="button"
+            className="landing__icon-btn"
+            onClick={toggleTheme}
+            aria-label={dark ? t('landing.themeLight') : t('landing.themeDark')}
+          >
+            {dark ? <Sun size={20} aria-hidden="true" /> : <Moon size={20} aria-hidden="true" />}
+          </button>
+        </Tooltip>
       </nav>
     </header>
   )

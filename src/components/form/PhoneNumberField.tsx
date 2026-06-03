@@ -7,6 +7,12 @@ import { useFormRules } from '../../hooks/useFormRules'
 import type { PhoneCountryOption } from '../../types/country'
 import type { ApplicationFormData } from '../../types/formTypes'
 import { FormTextField } from './FormTextField'
+import {
+  dialCodeFieldSx,
+  phoneApiHintSx,
+  phoneCellSx,
+  phoneRowSx,
+} from './phoneFieldSx'
 
 type Props = {
   phoneCountries: PhoneCountryOption[]
@@ -44,10 +50,9 @@ export function PhoneNumberField({ phoneCountries, loading, error }: Props) {
   }, [addressCountry, phoneCountryCode, phoneCountries, loading, setValue])
 
   return (
-    <Box className="phone-number-row">
-      <Box className="phone-number-row__code">
+    <Box sx={phoneRowSx}>
+      <Box sx={phoneCellSx}>
         <FormTextField
-          className="phone-dial-code-field"
           name="phoneCountryCode"
           rules={rules.phoneCountryCode}
           label={t('fields.phoneDialCode')}
@@ -58,11 +63,11 @@ export function PhoneNumberField({ phoneCountries, loading, error }: Props) {
           disabled={disabled}
           required
           fullWidth
+          sx={dialCodeFieldSx}
         />
       </Box>
-      <Box className="phone-number-row__number">
+      <Box sx={phoneCellSx}>
         <FormTextField
-          className="phone-national-field"
           name="phoneNumber"
           rules={rules.phoneNumber}
           label={t('fields.phone')}
@@ -81,7 +86,7 @@ export function PhoneNumberField({ phoneCountries, loading, error }: Props) {
         />
       </Box>
       {countriesHelperText ? (
-        <FormHelperText className="phone-number-row__api-hint" error={Boolean(error)}>
+        <FormHelperText sx={phoneApiHintSx} error={Boolean(error)}>
           {countriesHelperText}
         </FormHelperText>
       ) : null}

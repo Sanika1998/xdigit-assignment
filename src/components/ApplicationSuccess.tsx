@@ -4,9 +4,8 @@ import Typography from '@mui/material/Typography'
 import type { SxProps, Theme } from '@mui/material/styles'
 import { useNavigate, useSearchParams } from 'react-router'
 import { useLocale } from '../context/LocaleContext'
+import { successPaperSx } from '../theme/formSx'
 import { startNewApplication } from '../utils/startNewApplication'
-
-const cardSx: SxProps<Theme> = { p: { xs: 3, md: 4 }, textAlign: 'center' }
 
 const messageSx: SxProps<Theme> = { mb: 1 }
 
@@ -25,10 +24,9 @@ export function ApplicationSuccess() {
   return (
     <Paper
       elevation={0}
-      className="form-card"
       role="status"
       aria-live="polite"
-      sx={cardSx}
+      sx={successPaperSx}
     >
       <Typography variant="h5" component="h1" gutterBottom>
         {t('success.title')}

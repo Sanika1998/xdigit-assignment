@@ -44,10 +44,10 @@ Browser
 - Progress is saved to `localStorage` on change and on `pagehide` / `beforeunload`.
 - Invalid step URLs redirect to `personal`.
 
-### Styling split
+### Styling
 
-- MUI theme (`AppTheme.tsx`) handles palette, dark mode, input/stepper overrides, and RTL direction.
-- Plain CSS (`landing.css`, `App.css`, `index.css`) handles layout, the landing page, the phone row, the form card, and the light/dark CSS variables.
+- MUI theme (`AppTheme.tsx`) handles palette, dark mode, `CssBaseline`, component overrides, and RTL direction.
+- Shared `sx` modules (`landingSx.ts`, `formSx.ts`, `phoneFieldSx.ts`) style the shell, landing, form card, and phone row.
 
 ### Lazy loading
 

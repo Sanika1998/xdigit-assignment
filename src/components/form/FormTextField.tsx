@@ -8,7 +8,13 @@ import TextField, { type TextFieldProps } from '@mui/material/TextField'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useState } from 'react'
+import { fieldPlaceholderSx } from '../../theme/formSx'
 import { countryFlagEmoji } from '../../utils/countryFlag'
+import {
+  dialCodeFlagSx,
+  dialCodeTextSx,
+  dialCodeValueSx,
+} from './phoneFieldSx'
 import {
   Controller,
   useFormContext,
@@ -68,12 +74,14 @@ function SelectOptionLabel({
 
   if (compact) {
     return (
-      <span className="dial-code-select-value">
-        <span className="dial-code-select-value__flag" aria-hidden>
+      <Box component="span" sx={dialCodeValueSx}>
+        <Box component="span" aria-hidden sx={dialCodeFlagSx}>
           {flag}
-        </span>
-        <span className="dial-code-select-value__code">{option.label}</span>
-      </span>
+        </Box>
+        <Box component="span" sx={dialCodeTextSx}>
+          {option.label}
+        </Box>
+      </Box>
     )
   }
 
@@ -158,7 +166,9 @@ function ControlledFormTextField<T extends FieldValues>({
         renderValue: (selected: unknown) => {
           if (!hasFieldValue(selected)) {
             return showPlaceholder ? (
-              <span className="field-placeholder">{placeholder}</span>
+              <Box component="span" sx={fieldPlaceholderSx}>
+                {placeholder}
+              </Box>
             ) : (
               ''
             )

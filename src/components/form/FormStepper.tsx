@@ -78,7 +78,6 @@ export function FormStepper({ activeStep, labels, shortLabels, 'aria-label': ari
       /* Labels under icons so connectors sit on the icon row, not through text. */
       alternativeLabel
       orientation="horizontal"
-      className="form-stepper"
       aria-label={ariaLabel}
       sx={stepperSx(isMobile)}
     >

@@ -16,7 +16,12 @@ const fieldProps = {
 }
 
 function codeFieldRegion() {
-  return within(document.querySelector('.phone-number-row__code') as HTMLElement)
+  const combobox = screen.getByRole('combobox', { name: /code/i })
+  const formControl = combobox.closest('.MuiFormControl-root')
+  if (!formControl) {
+    throw new Error('Expected dial code field to be wrapped in MuiFormControl')
+  }
+  return within(formControl as HTMLElement)
 }
 
 describe('PhoneNumberField', () => {

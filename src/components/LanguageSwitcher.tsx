@@ -90,13 +90,13 @@ export function LanguageSwitcher({ variant = 'default' }: Props) {
     if (next) void setLocale(next)
   }
 
-  const unselectedColor = isHeader ? 'var(--landing-navy)' : theme.palette.text.primary
+  const unselectedColor = theme.palette.text.primary
   const unselectedBg = isHeader
     ? 'transparent'
     : isDark
       ? alpha(theme.palette.common.white, 0.06)
       : theme.palette.background.paper
-  const groupBorder = isHeader ? 'var(--landing-border)' : primary
+  const groupBorder = isHeader ? theme.palette.divider : primary
 
   return (
     <Box

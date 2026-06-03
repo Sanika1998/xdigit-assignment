@@ -1,11 +1,25 @@
-import { Link } from 'react-router'
-import { Tooltip } from '@mui/material'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import Toolbar from '@mui/material/Toolbar'
+import Tooltip from '@mui/material/Tooltip'
+import Typography from '@mui/material/Typography'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'
+import { Link } from 'react-router'
 import { LanguageSwitcher } from '../LanguageSwitcher'
 import { useSiteTheme } from '../../hooks/useSiteTheme'
 import { useLocale } from '../../context/LocaleContext'
+import {
+  appBarSx,
+  brandLinkSx,
+  brandLogoSx,
+  brandTextSx,
+  navSx,
+  themeIconButtonSx,
+  toolbarSx,
+} from './landingSx'
 
 // Site header: brand, language switcher, dark-mode toggle.
 export function Header() {
@@ -13,33 +27,34 @@ export function Header() {
   const { dark, toggleTheme } = useSiteTheme()
 
   return (
-    <header className="landing__header">
-      <Link to="/" className="landing__brand">
-        <span className="landing__logo" aria-hidden="true">
-          <VolunteerActivismIcon sx={{ fontSize: 18 }} />
-        </span>
-        <span className="landing__brand-text">{t('landing.brand')}</span>
-      </Link>
+    <AppBar component="header" position="sticky" sx={appBarSx}>
+      <Toolbar disableGutters sx={toolbarSx}>
+        <Box component={Link} to="/" sx={brandLinkSx}>
+          <Box aria-hidden="true" sx={brandLogoSx}>
+            <VolunteerActivismIcon sx={{ fontSize: 18 }} />
+          </Box>
+          <Typography component="span" sx={brandTextSx}>
+            {t('landing.brand')}
+          </Typography>
+        </Box>
 
-      <nav className="landing__nav" aria-label={t('landing.navLabel')}>
-        <div className="landing__nav-lang">
+        <Box component="nav" aria-label={t('landing.navLabel')} sx={navSx}>
           <LanguageSwitcher variant="header" />
-        </div>
-        <Tooltip title={dark ? t('landing.themeLight') : t('landing.themeDark')}>
-          <button
-            type="button"
-            className="landing__icon-btn"
-            onClick={toggleTheme}
-            aria-label={dark ? t('landing.themeLight') : t('landing.themeDark')}
-          >
-            {dark ? (
-              <LightModeOutlinedIcon sx={{ fontSize: 20 }} aria-hidden="true" />
-            ) : (
-              <DarkModeOutlinedIcon sx={{ fontSize: 20 }} aria-hidden="true" />
-            )}
-          </button>
-        </Tooltip>
-      </nav>
-    </header>
+          <Tooltip title={dark ? t('landing.themeLight') : t('landing.themeDark')}>
+            <IconButton
+              onClick={toggleTheme}
+              aria-label={dark ? t('landing.themeLight') : t('landing.themeDark')}
+              sx={themeIconButtonSx}
+            >
+              {dark ? (
+                <LightModeOutlinedIcon sx={{ fontSize: 20 }} />
+              ) : (
+                <DarkModeOutlinedIcon sx={{ fontSize: 20 }} />
+              )}
+            </IconButton>
+          </Tooltip>
+        </Box>
+      </Toolbar>
+    </AppBar>
   )
 }

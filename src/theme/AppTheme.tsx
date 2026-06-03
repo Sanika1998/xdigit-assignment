@@ -78,12 +78,39 @@ export function AppTheme({ children }: { children: ReactNode }) {
                   primary: '#0f172a',
                   secondary: '#64748b',
                 },
+                divider: '#e2e8f0',
               }),
         },
         shape: {
           borderRadius: 12,
         },
+        typography: {
+          htmlFontSize: 18,
+          fontFamily: [
+            'system-ui',
+            '-apple-system',
+            'Segoe UI',
+            'Roboto',
+            'Helvetica Neue',
+            'Arial',
+            'Noto Sans Arabic',
+            'sans-serif',
+          ].join(','),
+        },
         components: {
+          MuiCssBaseline: {
+            styleOverrides: {
+              html: {
+                fontSize: '18px',
+                lineHeight: 1.45,
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+                '@media (max-width: 1024px)': {
+                  fontSize: '16px',
+                },
+              },
+            },
+          },
           MuiInputBase: {
             styleOverrides: {
               root:
@@ -129,6 +156,30 @@ export function AppTheme({ children }: { children: ReactNode }) {
                       },
                     }
                   : {},
+              shrink: ({ theme }) => ({
+                zIndex: 1,
+                overflow: 'visible',
+                backgroundColor: theme.palette.background.paper,
+                paddingInline: '4px',
+                marginInline: '-4px',
+              }),
+            },
+          },
+          MuiFormControl: {
+            styleOverrides: {
+              root: {
+                overflow: 'visible',
+              },
+            },
+          },
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                '&:focus-visible': {
+                  outline: `2px solid ${portalColors.primary}`,
+                  outlineOffset: 2,
+                },
+              },
             },
           },
           MuiFormLabel: {

@@ -1,7 +1,8 @@
+import Box from '@mui/material/Box'
 import type { ReactNode } from 'react'
-import '../../landing.css'
 import { AppTheme } from '../../theme/AppTheme'
 import { Header } from '../landing/Header'
+import { appShellSx } from '../landing/landingSx'
 
 type Props = {
   children: ReactNode
@@ -11,10 +12,10 @@ type Props = {
 export function AppShell({ children }: Props) {
   return (
     <AppTheme>
-      <div className="app-shell">
+      <Box className="app-shell" sx={appShellSx}>
         <Header />
         {children}
-      </div>
+      </Box>
     </AppTheme>
   )
 }

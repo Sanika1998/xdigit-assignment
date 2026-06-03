@@ -9,6 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { Suspense, lazy } from 'react'
 import { STEP_KEYS, useApplicationForm } from '../context/ApplicationFormContext'
 import { useLocale } from '../context/LocaleContext'
+import { formCardSx, formPageTitleSx, skipLinkSx } from '../theme/formSx'
 import { FormProgressBar } from './form/FormProgressBar'
 import { FormStepper } from './form/FormStepper'
 
@@ -74,8 +75,6 @@ const secondaryActionsSx: SxProps<Theme> = {
   width: { xs: '100%', sm: 'auto' },
 }
 
-const formCardSx: SxProps<Theme> = { position: 'relative' }
-
 const submitErrorSx: SxProps<Theme> = { mb: 2 }
 
 export const ApplicationForm = () => {
@@ -107,17 +106,12 @@ export const ApplicationForm = () => {
 
   return (
     <>
-      <a href="#application-form" className="skip-link">
+      <Box component="a" href="#application-form" sx={skipLinkSx}>
         {t('nav.skipToForm')}
-      </a>
+      </Box>
 
-      <Paper
-        id="application-form"
-        elevation={0}
-        className="form-card"
-        sx={formCardSx}
-      >
-        <Typography id="form-title" component="h1" className="form-page-title">
+      <Paper id="application-form" elevation={0} sx={formCardSx}>
+        <Typography id="form-title" component="h1" sx={formPageTitleSx}>
           {t('appTitle')}
         </Typography>
 
@@ -191,7 +185,7 @@ export const ApplicationForm = () => {
             </Suspense>
           </Box>
 
-          <Box className="form-actions" sx={formActionsSx}>
+          <Box sx={formActionsSx}>
             <Box sx={secondaryActionsSx}>
             <Button
               type="button"

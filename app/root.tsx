@@ -8,9 +8,7 @@ import {
 } from 'react-router'
 import { LocaleProvider } from '~/context/LocaleContext'
 import { LOCALE_STORAGE_KEY } from '~/utils/locale.shared'
-import '~/App.css'
 import '~/i18n'
-import '~/index.css'
 
 export const links: LinksFunction = () => [
   { rel: 'icon', type: 'image/svg+xml', href: '/portal-favicon.svg' },

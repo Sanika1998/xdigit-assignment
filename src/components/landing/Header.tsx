@@ -1,6 +1,8 @@
 import { Link } from 'react-router'
 import { Tooltip } from '@mui/material'
-import { HandHeart, Moon, Sun } from 'lucide-react'
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'
 import { LanguageSwitcher } from '../LanguageSwitcher'
 import { useSiteTheme } from '../../hooks/useSiteTheme'
 import { useLocale } from '../../context/LocaleContext'
@@ -14,7 +16,7 @@ export function Header() {
     <header className="landing__header">
       <Link to="/" className="landing__brand">
         <span className="landing__logo" aria-hidden="true">
-          <HandHeart size={18} />
+          <VolunteerActivismIcon sx={{ fontSize: 18 }} />
         </span>
         <span className="landing__brand-text">{t('landing.brand')}</span>
       </Link>
@@ -30,7 +32,11 @@ export function Header() {
             onClick={toggleTheme}
             aria-label={dark ? t('landing.themeLight') : t('landing.themeDark')}
           >
-            {dark ? <Sun size={20} aria-hidden="true" /> : <Moon size={20} aria-hidden="true" />}
+            {dark ? (
+              <LightModeOutlinedIcon sx={{ fontSize: 20 }} aria-hidden="true" />
+            ) : (
+              <DarkModeOutlinedIcon sx={{ fontSize: 20 }} aria-hidden="true" />
+            )}
           </button>
         </Tooltip>
       </nav>
